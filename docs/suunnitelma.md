@@ -1,4 +1,4 @@
-Suunnitelmanani on rakentaa karkkeja (mustia ja valkoisia) lajitteleva robotti. Robotin rakenteesta ja
-toteutustavasta en ole vielä päässyt yksimielisyyteen itseni kanssa.
+Suunnitelmanani on rakentaa auto joka seuraa mutkittelevaa viivaa valosensorin avulla.
+Tämän lisäksi auton tulee tunnistaa kulkureitillään olevat yksinkertaiset esteet ultraäänisensorin avulla sekä osata kiertää nämä ja jatkaa edelleen viivan seuraamista esteen toiselta puolelta.
 
-Siltä varalta, että lajittelu ei valosensorilla (värisensorin puutteen takia) onnistu, niin vaihtoehtoisena suunnitelmanani on tehdä jokin seuraavista: itsestään parkkeerava auto, esteitä väistelevä auto, tai katapultti joka etsii kohteen ja viskaa pallon samaan ilmansuuntaan kuin missä kohde sijaitsee.
+Mahdollisia ongelmatilanteita on esim liian monimutkainen este viivalla, jonka kiertämiseen toteutettava logiikka ei riitä. Tarkoituksena kuintekin on että suorakulmion malliset esteet pitää olla kierrettävissä.
