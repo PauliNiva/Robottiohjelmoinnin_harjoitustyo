@@ -1,4 +1,5 @@
-massive-ironman
+Viivaa seuraava ja esteitä väistelevä auto
 ===============
 
-Joulun robokurssin 2014 pohja
+Joulun 2014 robottiohjelmoinnin harjoitustyö
+Pauli Niva
