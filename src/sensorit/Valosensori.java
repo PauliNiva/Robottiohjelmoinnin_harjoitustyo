@@ -60,4 +60,8 @@ public class Valosensori {
     public int getKynnysarvo() {
 	return this.kynnysarvo;
     }
+    
+    public int lueValoarvo() {
+	return valosensori.readValue();
+    }
 }

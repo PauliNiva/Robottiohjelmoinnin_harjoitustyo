@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Applications/leJOS_NXJ/lib/nxt/classes.jar" sourcepath="/Applications/leJOS_NXJ/lib/nxt/classes-src.zip">
+	<classpathentry kind="con" path="org.lejos.nxt.ldt.LEJOS_LIBRARY_CONTAINER/nxt"/>
+	<classpathentry kind="lib" path="/opt/leJOS_NXJ/lib/nxt/classes.jar" sourcepath="/Applications/leJOS_NXJ/lib/nxt/classes-src.zip">
 		<accessrules>
 			<accessrule kind="discouraged" pattern="**/internal/**"/>
 		</accessrules>
