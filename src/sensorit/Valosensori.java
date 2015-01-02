@@ -60,7 +60,15 @@ public class Valosensori {
     public int getKynnysarvo() {
 	return this.kynnysarvo;
     }
+<<<<<<< Updated upstream
     
+=======
+<<<<<<< HEAD
+
+=======
+    
+>>>>>>> FETCH_HEAD
+>>>>>>> Stashed changes
     public int lueValoarvo() {
 	return valosensori.readValue();
     }
