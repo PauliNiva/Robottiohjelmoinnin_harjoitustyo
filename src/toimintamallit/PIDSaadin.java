@@ -10,7 +10,7 @@ public class PIDSaadin {
     private static int Kp = 1000;
     private static int Ki = 100;
     private static int Kd = 10000;
-    private static int Tp = 50;
+    private static int Tp = 25;
     private static int dT;
     private static int Pc;
     private static int etaisyys = 45;

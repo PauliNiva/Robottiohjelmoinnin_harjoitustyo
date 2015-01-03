@@ -31,10 +31,12 @@ public class Valosensori {
     @SuppressWarnings("deprecation")
     private int lueArvo(String kohde) {
 	int sensorinArvo = 0; // Arvon initialisointi
+	while (Button.ENTER.isPressed())
+	    ;
 	LCD.clear();
 	LCD.drawString("PAINA ORANSSIA", 0, 0);
 	LCD.drawString("KALIBROIDAKSESI", 0, 1);
-	LCD.drawString("kohde", 0, 2);
+	LCD.drawString(kohde, 0, 2);
 	while (!Button.ENTER.isPressed()) {
 	    sensorinArvo = valosensori.readValue();
 	    LCD.drawInt(sensorinArvo, 4, 8, 2);
@@ -44,8 +46,8 @@ public class Valosensori {
     }
 
     public void kalibroi() {
-	this.viivanArvo = lueArvo("VIIVAN ARVO");
-	this.taustanArvo = lueArvo("TAUSTAN ARVO");
+	this.viivanArvo = lueArvo("VIIVA");
+	this.taustanArvo = lueArvo("TAUSTA");
 	this.kynnysarvo = (viivanArvo + taustanArvo) / 2;
     }
 
@@ -60,15 +62,7 @@ public class Valosensori {
     public int getKynnysarvo() {
 	return this.kynnysarvo;
     }
-<<<<<<< Updated upstream
-    
-=======
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> FETCH_HEAD
->>>>>>> Stashed changes
     public int lueValoarvo() {
 	return valosensori.readValue();
     }
