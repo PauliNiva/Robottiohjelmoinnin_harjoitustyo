@@ -13,23 +13,43 @@ import lejos.nxt.SensorPort;
  * ja taustan erottamiseen.
  * 
  * @author Pauli Niva
- * @version 30122014
+ * @version 06012015
  */
 
-public class Valosensori {
+public class Viivasensori {
 
-    private LightSensor valosensori;
-    private int viivanArvo;
+    private LightSensor viivasensori;
     private int taustanArvo;
-    private int kynnysarvo;
+    private int viivanArvo;
+    private int seurattavaArvo;
 
-    public Valosensori(SensorPort sensoriportti) {
-	valosensori = new LightSensor(sensoriportti);
-	valosensori.setFloodlight(true);
+    public Viivasensori() {
+	viivasensori = new LightSensor(SensorPort.S1);
+	viivasensori.setFloodlight(true);
+    }
+
+    public int lueArvo() {
+	return viivasensori.readValue();
+    }
+
+    public int haeSeurattavaArvo() {
+	return this.seurattavaArvo;
+    }
+
+    public int asetaSeurattavaArvo() {
+	this.seurattavaArvo = (this.taustanArvo + this.viivanArvo) / 2;
+	return this.seurattavaArvo;
+
+    }
+
+    public int kalibroi() {
+	this.taustanArvo = kalibroiArvo("TAUSTA");
+	this.viivanArvo = kalibroiArvo("VIIVA");
+	return asetaSeurattavaArvo();
     }
 
     @SuppressWarnings("deprecation")
-    private int lueArvo(String kohde) {
+    public int kalibroiArvo(String kohde) {
 	int sensorinArvo = 0; // Arvon initialisointi
 	while (Button.ENTER.isPressed())
 	    ;
@@ -38,32 +58,10 @@ public class Valosensori {
 	LCD.drawString("KALIBROIDAKSESI", 0, 1);
 	LCD.drawString(kohde, 0, 2);
 	while (!Button.ENTER.isPressed()) {
-	    sensorinArvo = valosensori.readValue();
+	    sensorinArvo = lueArvo();
 	    LCD.drawInt(sensorinArvo, 4, 8, 2);
 	    LCD.refresh();
 	}
 	return sensorinArvo;
-    }
-
-    public void kalibroi() {
-	this.viivanArvo = lueArvo("VIIVA");
-	this.taustanArvo = lueArvo("TAUSTA");
-	this.kynnysarvo = (viivanArvo + taustanArvo) / 2;
-    }
-
-    public int getViivanArvo() {
-	return this.viivanArvo;
-    }
-
-    public int getTaustanArvo() {
-	return this.taustanArvo;
-    }
-
-    public int getKynnysarvo() {
-	return this.kynnysarvo;
-    }
-
-    public int lueValoarvo() {
-	return valosensori.readValue();
     }
 }

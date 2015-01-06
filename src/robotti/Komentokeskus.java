@@ -1,36 +1,39 @@
 package robotti;
 
 import lejos.nxt.Button;
-import lejos.nxt.LCD;
-import lejos.nxt.SensorPort;
-import sensorit.Valosensori;
-import toimintamallit.PIDSaadin;
+import sensorit.Viivasensori;
+
+/**
+ * Robotin "aivot".
+ * 
+ * @author Pauli
+ * @version 03012015
+ */
 
 public class Komentokeskus {
 
+    private PIDSaadin pidSaadin;
+    private Ohjausyksikko ohjausyksikko;
+    private Viivasensori viivasensori;
+
+    public Komentokeskus() {
+	viivasensori = new Viivasensori();
+	ohjausyksikko = new Ohjausyksikko();
+	pidSaadin = new PIDSaadin();
+    }
+
     @SuppressWarnings("deprecation")
-    public static void main(String[] args) throws Exception {
-	Valosensori valosensori = new Valosensori(SensorPort.S1);
-	valosensori.kalibroi();
-	LCD.clear();
-	PIDSaadin pidSaadin = new PIDSaadin();
-	int valoarvo;
-	boolean suunta = true;
-	int valkoiset = 0;
-	int etaisyys = valosensori.getKynnysarvo();
+    public void kaynnista() throws Exception {
+	int seurattavaArvo = viivasensori.kalibroi();
 	while (Button.ENTER.isPressed())
 	    ;
-	while (!Button.ESCAPE.isPressed()) {
-	    valoarvo = valosensori.lueValoarvo();
-	    pidSaadin.seuraaViivaa(valoarvo);
-	    if (valosensori.getKynnysarvo() > valoarvo) {
-		valkoiset = 0;
-	    } else {
-		valkoiset++;
-	    }
-	    if (valkoiset == 500) {
-		suunta = !suunta;
-	    }
+	while (!Button.ENTER.isPressed()) {
+	    int valoarvo = viivasensori.lueArvo();
+	    int kaannos = pidSaadin.pidLaske(valoarvo, seurattavaArvo);
+	    int Tp = pidSaadin.getTp();
+	    int vasenTeho = Tp - kaannos;
+	    int oikeaTeho = Tp + kaannos;
+	    ohjausyksikko.liiku(vasenTeho, oikeaTeho, Tp);
 	    Thread.sleep(5);
 	}
     }
