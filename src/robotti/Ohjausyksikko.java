@@ -1,15 +1,32 @@
 package robotti;
 
+import lejos.nxt.Motor;
+import lejos.robotics.navigation.DifferentialPilot;
+import moottorit.Kaikuluotainmoottori;
 import moottorit.OikeaMoottori;
 import moottorit.VasenMoottori;
+import sensorit.Estesensori;
+import sensorit.Viivasensori;
 
 public class Ohjausyksikko {
     private VasenMoottori vasenMoottori;
     private OikeaMoottori oikeaMoottori;
+    private DifferentialPilot ohjaaja;
+    private Kaikuluotainmoottori kaikuluotainmoottori;
+    private Estesensori estesensori;
+    private Viivasensori viivasensori;
 
     public Ohjausyksikko() {
+	this.viivasensori = new Viivasensori();
+	this.kaikuluotainmoottori = new Kaikuluotainmoottori();
+	this.estesensori = new Estesensori();
 	this.vasenMoottori = new VasenMoottori();
 	this.oikeaMoottori = new OikeaMoottori();
+	this.ohjaaja = new DifferentialPilot(5.6F, 12F,
+		this.vasenMoottori.haeMoottori(),
+		this.oikeaMoottori.haeMoottori());
+	this.ohjaaja.setRotateSpeed(50);
+	this.ohjaaja.setTravelSpeed(5);
     }
 
     public void liiku(int vasenTeho, int oikeaTeho, int Tp) {
@@ -32,5 +49,43 @@ public class Ohjausyksikko {
     public void pysahdy() {
 	vasenMoottori.pysahdy();
 	oikeaMoottori.pysahdy();
+    }
+
+    public void kierraEste(int seurattavaArvo) {
+	Motor.A.resetTachoCount();
+	Motor.C.resetTachoCount();
+	ohjaaja.reset();
+	ohjaaja.rotate(-65);
+	kaikuluotainmoottori.kaannyVasen(90);
+	ajaOhi();
+	ohjaaja.rotate(60);
+	etsiKohde();
+	ajaOhi();
+	ohjaaja.rotate(60);
+	etsiViiva(seurattavaArvo);
+	kaikuluotainmoottori.kaannyOikea(90);
+	ohjaaja.rotate(-60);
+    }
+
+    public void ajaOhi() {
+	while (estesensori.haeEtaisyys() != 255) {
+	    ohjaaja.forward();
+	}
+	ohjaaja.stop();
+	ohjaaja.travel(15);
+    }
+
+    public void etsiKohde() {
+	while (estesensori.haeEtaisyys() == 255) {
+	    ohjaaja.forward();
+	}
+	ohjaaja.stop();
+    }
+
+    public void etsiViiva(int seurattavaArvo) {
+	while (viivasensori.lueArvo() > seurattavaArvo) {
+	    ohjaaja.forward();
+	}
+	ohjaaja.stop();
     }
 }

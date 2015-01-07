@@ -13,8 +13,8 @@ public class PIDSaadin {
 
     public PIDSaadin() {
 	this.Kp = 300;
-	this.Ki = 0;
-	this.Kd = 0;
+	this.Ki = 7;
+	this.Kd = 600;
 	this.Tp = 65;
 	this.integraali = 0;
 	this.derivaatta = 0;

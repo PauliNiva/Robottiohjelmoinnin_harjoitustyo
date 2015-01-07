@@ -31,8 +31,11 @@ public class Komentokeskus {
 	while (Button.ENTER.isPressed())
 	    ;
 	while (!Button.ENTER.isPressed()) {
-	    if (estesensori.haeEtaisyys() < 35) {
+	    if (estesensori.haeEtaisyys() < 30) {
 		ohjausyksikko.pysahdy();
+		Thread.sleep(1000);
+		ohjausyksikko.kierraEste(seurattavaArvo);
+		break;
 	    } else {
 		int valoarvo = viivasensori.lueArvo();
 		int kaannos = pidSaadin.pidLaske(valoarvo, seurattavaArvo);
