@@ -3,12 +3,12 @@ package moottorit;
 import lejos.nxt.MotorPort;
 import lejos.nxt.NXTMotor;
 
-public class VasenMoottori {
+public class KaikuluotainMoottori {
 
     private NXTMotor moottori;
 
-    public VasenMoottori() {
-	moottori = new NXTMotor(MotorPort.C, MotorPort.STOP);
+    public KaikuluotainMoottori() {
+	moottori = new NXTMotor(MotorPort.B, MotorPort.STOP);
     }
 
     public void eteenpain() {

@@ -34,7 +34,6 @@ public class Komentokeskus {
 	    int vasenTeho = Tp - kaannos;
 	    int oikeaTeho = Tp + kaannos;
 	    ohjausyksikko.liiku(vasenTeho, oikeaTeho, Tp);
-	    Thread.sleep(5);
 	}
     }
 }

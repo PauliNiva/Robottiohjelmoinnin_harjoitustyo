@@ -12,10 +12,10 @@ public class PIDSaadin {
     private int viimeisinVirhe;
 
     public PIDSaadin() {
-	this.Kp = 350;
-	this.Ki = 7;
-	this.Kd = 500;
-	this.Tp = 45;
+	this.Kp = 300;
+	this.Ki = 0;
+	this.Kd = 0;
+	this.Tp = 65;
 	this.integraali = 0;
 	this.derivaatta = 0;
 	this.virhe = 0;
