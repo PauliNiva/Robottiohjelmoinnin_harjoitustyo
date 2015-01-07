@@ -15,6 +15,7 @@ public class Ohjausyksikko {
     private Kaikuluotainmoottori kaikuluotainmoottori;
     private Estesensori estesensori;
     private Viivasensori viivasensori;
+    private PIDSaadin pidSaadin;
 
     public Ohjausyksikko() {
 	this.viivasensori = new Viivasensori();
@@ -27,6 +28,7 @@ public class Ohjausyksikko {
 		this.oikeaMoottori.haeMoottori());
 	this.ohjaaja.setRotateSpeed(50);
 	this.ohjaaja.setTravelSpeed(5);
+	this.pidSaadin = new PIDSaadin();
     }
 
     public void liiku(int vasenTeho, int oikeaTeho, int Tp) {
@@ -55,16 +57,19 @@ public class Ohjausyksikko {
 	Motor.A.resetTachoCount();
 	Motor.C.resetTachoCount();
 	ohjaaja.reset();
-	ohjaaja.rotate(-65);
+	ohjaaja.rotate(-63);
 	kaikuluotainmoottori.kaannyVasen(90);
 	ajaOhi();
-	ohjaaja.rotate(60);
+	ohjaaja.rotate(63);
 	etsiKohde();
 	ajaOhi();
-	ohjaaja.rotate(60);
+	ohjaaja.rotate(55);
 	etsiViiva(seurattavaArvo);
 	kaikuluotainmoottori.kaannyOikea(90);
-	ohjaaja.rotate(-60);
+	ohjaaja.rotate(-50);
+	Motor.A.suspendRegulation();
+	Motor.B.suspendRegulation();
+	Motor.C.suspendRegulation();
     }
 
     public void ajaOhi() {

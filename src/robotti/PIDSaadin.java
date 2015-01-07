@@ -36,4 +36,12 @@ public class PIDSaadin {
     public int getTp() {
 	return this.Tp;
     }
+
+    public void nollaaVirhe() {
+	this.virhe = 0;
+    }
+
+    public void nollaaViimeisinVirhe() {
+	this.viimeisinVirhe = 0;
+    }
 }
