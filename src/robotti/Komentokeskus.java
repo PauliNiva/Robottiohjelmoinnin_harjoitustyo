@@ -1,6 +1,7 @@
 package robotti;
 
 import lejos.nxt.Button;
+import sensorit.Estesensori;
 import sensorit.Viivasensori;
 
 /**
@@ -15,11 +16,13 @@ public class Komentokeskus {
     private PIDSaadin pidSaadin;
     private Ohjausyksikko ohjausyksikko;
     private Viivasensori viivasensori;
+    private Estesensori estesensori;
 
     public Komentokeskus() {
 	viivasensori = new Viivasensori();
 	ohjausyksikko = new Ohjausyksikko();
 	pidSaadin = new PIDSaadin();
+	estesensori = new Estesensori();
     }
 
     @SuppressWarnings("deprecation")
@@ -28,12 +31,16 @@ public class Komentokeskus {
 	while (Button.ENTER.isPressed())
 	    ;
 	while (!Button.ENTER.isPressed()) {
-	    int valoarvo = viivasensori.lueArvo();
-	    int kaannos = pidSaadin.pidLaske(valoarvo, seurattavaArvo);
-	    int Tp = pidSaadin.getTp();
-	    int vasenTeho = Tp - kaannos;
-	    int oikeaTeho = Tp + kaannos;
-	    ohjausyksikko.liiku(vasenTeho, oikeaTeho, Tp);
+	    if (estesensori.haeEtaisyys() < 35) {
+		ohjausyksikko.pysahdy();
+	    } else {
+		int valoarvo = viivasensori.lueArvo();
+		int kaannos = pidSaadin.pidLaske(valoarvo, seurattavaArvo);
+		int Tp = pidSaadin.getTp();
+		int vasenTeho = Tp - kaannos;
+		int oikeaTeho = Tp + kaannos;
+		ohjausyksikko.liiku(vasenTeho, oikeaTeho, Tp);
+	    }
 	}
     }
 }

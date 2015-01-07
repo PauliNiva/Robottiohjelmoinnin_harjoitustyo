@@ -3,11 +3,11 @@ package sensorit;
 import lejos.nxt.SensorPort;
 import lejos.nxt.UltrasonicSensor;
 
-public class EsteSensori {
+public class Estesensori {
 
     private UltrasonicSensor estesensori;
 
-    public EsteSensori() {
+    public Estesensori() {
 	this.estesensori = new UltrasonicSensor(SensorPort.S2);
     }
 

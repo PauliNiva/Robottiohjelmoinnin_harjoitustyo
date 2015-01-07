@@ -28,4 +28,9 @@ public class Ohjausyksikko {
 	    oikeaMoottori.taaksepain();
 	}
     }
+
+    public void pysahdy() {
+	vasenMoottori.pysahdy();
+	oikeaMoottori.pysahdy();
+    }
 }
