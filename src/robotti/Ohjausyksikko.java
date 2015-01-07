@@ -8,6 +8,13 @@ import moottorit.VasenMoottori;
 import sensorit.Estesensori;
 import sensorit.Viivasensori;
 
+/**
+ * Luokka robotin liikuttamiseen.
+ * 
+ * @author Pauli
+ * @version 07012015
+ */
+
 public class Ohjausyksikko {
     private VasenMoottori vasenMoottori;
     private OikeaMoottori oikeaMoottori;
@@ -60,7 +67,7 @@ public class Ohjausyksikko {
 	ohjaaja.rotate(-63);
 	kaikuluotainmoottori.kaannyVasen(90);
 	ajaOhi();
-	ohjaaja.rotate(63);
+	ohjaaja.rotate(55);
 	etsiKohde();
 	ajaOhi();
 	ohjaaja.rotate(55);

@@ -1,11 +1,18 @@
 package robotti;
 
+/**
+ * Luokka jossa lasketaan tarvittava virheen korjaus, eli robotin kääntö
+ * derivaatan ja integraalin avulla.
+ * 
+ * @author Pauli
+ * @version 07012015
+ */
 public class PIDSaadin {
 
     private int Kp;
     private int Ki;
     private int Kd;
-    private int Tp;
+    private int TehoSuoraanKulkiessa;
     private int integraali;
     private int derivaatta;
     private int virhe;
@@ -15,13 +22,22 @@ public class PIDSaadin {
 	this.Kp = 300;
 	this.Ki = 7;
 	this.Kd = 600;
-	this.Tp = 65;
+	this.TehoSuoraanKulkiessa = 65; // Teho jolla robotin olisi tarkoitus
+					// kulkea, kun virhe on nolla.
 	this.integraali = 0;
 	this.derivaatta = 0;
 	this.virhe = 0;
 	this.viimeisinVirhe = 0;
     }
 
+    /**
+     * Metodi robotin virheellisen sijainnin korjaamiseen, eli metodi laskee
+     * arvion seuraavasta tarvittavasta käännöksestä.
+     * 
+     * @param valoarvo
+     * @param seurattavaArvo
+     * @return
+     */
     public int pidLaske(int valoarvo, int seurattavaArvo) {
 	int kaannos;
 	virhe = valoarvo - seurattavaArvo;
@@ -33,8 +49,8 @@ public class PIDSaadin {
 	return kaannos;
     }
 
-    public int getTp() {
-	return this.Tp;
+    public int haeTehoSuoraanKulkiessa() {
+	return this.TehoSuoraanKulkiessa;
     }
 
     public void nollaaVirhe() {

@@ -5,10 +5,13 @@ import sensorit.Estesensori;
 import sensorit.Viivasensori;
 
 /**
- * Robotin "aivot".
+ * Robotin "aivot". Luokassa on kaksi tilaa. Toisessa tilassa seurataan viivaa
+ * niin kauan aikaa, kunnes robotti havaitsee esteen polullaan. Tällöin
+ * siirryään esteen kierto -tilaan, josta palataan viivan seuraamis -tilaan, kun
+ * este on kierretty.
  * 
  * @author Pauli
- * @version 03012015
+ * @version 06012015
  */
 
 public class Komentokeskus {
@@ -26,22 +29,23 @@ public class Komentokeskus {
     }
 
     @SuppressWarnings("deprecation")
-    public void kaynnista() throws Exception {
+    public void kaynnista() throws InterruptedException {
 	int seurattavaArvo = viivasensori.kalibroi();
 	while (Button.ENTER.isPressed())
+	    //
 	    ;
 	while (!Button.ENTER.isPressed()) {
 	    if (estesensori.haeEtaisyys() < 30) {
 		ohjausyksikko.pysahdy();
-		Thread.sleep(700);
+		Thread.sleep(700); // Mahdollinen poikkeus heitetään eteenpäin
 		ohjausyksikko.kierraEste(seurattavaArvo);
 	    } else {
 		int valoarvo = viivasensori.lueArvo();
 		int kaannos = pidSaadin.pidLaske(valoarvo, seurattavaArvo);
-		int Tp = pidSaadin.getTp();
-		int vasenTeho = Tp - kaannos;
-		int oikeaTeho = Tp + kaannos;
-		ohjausyksikko.liiku(vasenTeho, oikeaTeho, Tp);
+		int tehoSuoraanKulkiessa = pidSaadin.haeTehoSuoraanKulkiessa();
+		int vasenTeho = tehoSuoraanKulkiessa - kaannos;
+		int oikeaTeho = tehoSuoraanKulkiessa + kaannos;
+		ohjausyksikko.liiku(vasenTeho, oikeaTeho, tehoSuoraanKulkiessa);
 	    }
 	}
     }

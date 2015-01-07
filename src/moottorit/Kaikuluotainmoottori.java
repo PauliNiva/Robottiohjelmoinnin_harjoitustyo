@@ -3,6 +3,13 @@ package moottorit;
 import lejos.nxt.MotorPort;
 import lejos.nxt.NXTMotor;
 
+/**
+ * Luokka moottorin, johon kaikuluotain on kiinnitetty käyttämiseen. Moottori
+ * kytkettävä porttiin B.
+ * 
+ * @author Pauli
+ * @version 07012015
+ */
 public class Kaikuluotainmoottori {
 
     private NXTMotor moottori;
@@ -29,6 +36,12 @@ public class Kaikuluotainmoottori {
 	moottori.setPower(teho);
     }
 
+    /**
+     * Metodi ultraäänisensorin kääntämiseen vasemmalle sensoria käännetään
+     * parametrina saadun arvon verran asteina.
+     * 
+     * @param aste
+     */
     public void kaannyVasen(int aste) {
 	moottori.resetTachoCount();
 	while (Math.abs(haeTakometriLuku()) < aste) {
@@ -37,6 +50,12 @@ public class Kaikuluotainmoottori {
 	moottori.stop();
     }
 
+    /**
+     * Metodi ultraäänisensorin kääntämiseen vasemmalle sensoria käännetään
+     * parametrina saadun arvon verran asteina.
+     * 
+     * @param aste
+     */
     public void kaannyOikea(int aste) {
 	moottori.resetTachoCount();
 	while (Math.abs(haeTakometriLuku()) < aste) {

@@ -5,6 +5,12 @@ import lejos.nxt.MotorPort;
 import lejos.nxt.NXTMotor;
 import lejos.nxt.NXTRegulatedMotor;
 
+/**
+ * Luokka oikean moottorin pyörittämiseen. Moottori kytkettävä porttiin A.
+ * 
+ * @author Pauli
+ * @version 07012015
+ */
 public class OikeaMoottori {
 
     private NXTMotor moottori;

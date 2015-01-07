@@ -9,8 +9,11 @@ import lejos.nxt.SensorPort;
  * Sensori joka erottaa tumman viivan vaaleammasta taustasta.
  * 
  * Valoarvot (viivan arvo ja taustan arvo) kalibroidaan valosensorilla ja
- * kynnysarvo lasketaan naiden lukujen mediaanina. Kynnysarvoa kaytetaan viivan
- * ja taustan erottamiseen.
+ * kynnysarvo lasketaan naiden lukujen mediaanina. Seurattavaa arvoa kaytetaan
+ * viivan ja taustan erottamiseen ja robotti pyrkii pitämään sensorin kyseisen
+ * arvon päällä.
+ * 
+ * Valosensori kiinnitettävä porttiin 1.
  * 
  * @author Pauli Niva
  * @version 06012015
