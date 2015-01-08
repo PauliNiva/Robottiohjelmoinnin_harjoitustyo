@@ -7,11 +7,12 @@ import lejos.nxt.NXTRegulatedMotor;
 
 /**
  * Luokka vasemman moottorin pyörittämiseen. Moottori kiinnitettävä porttiin C.
+ * Luokka toteuttaa rajapinnan Moottori.
  * 
- * @author Pauli
+ * @author Pauli Niva
  * @version 07012015
  */
-public class VasenMoottori {
+public class VasenMoottori implements Moottori {
 
     private NXTMotor moottori;
     private NXTRegulatedMotor moottoriC;

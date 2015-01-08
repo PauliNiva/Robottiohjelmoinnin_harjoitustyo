@@ -10,7 +10,7 @@ import sensorit.Viivasensori;
  * siirryään esteen kierto -tilaan, josta palataan viivan seuraamis -tilaan, kun
  * este on kierretty.
  * 
- * @author Pauli
+ * @author Pauli Niva
  * @version 06012015
  */
 
@@ -28,11 +28,23 @@ public class Komentokeskus {
 	estesensori = new Estesensori();
     }
 
+    /**
+     * Metodi pyörittää robottia sen kahden eri tilan välillä. Jos havaitaan
+     * este, siirrytään väistämistilaan, muuten ollaan perustilassa joka seuraa
+     * viivaa. Tämä metodi sisältää robotin hätäpysäytyksen. Eli robotti
+     * pyörittää tiloja niin kauan aikaa kunnes oranssia enter -nappulaa
+     * painetaan.
+     * 
+     * @throws InterruptedException
+     *             Thread.sleep -metodi voi heittää poikkeuksen, jos odottaminen
+     *             keskeytetään. Poikkeus heitetään main -metodille käynnistys
+     *             -luokassa, joka käsittelee poikkeuksen.
+     */
     @SuppressWarnings("deprecation")
     public void kaynnista() throws InterruptedException {
 	int seurattavaArvo = viivasensori.kalibroi();
 	while (Button.ENTER.isPressed())
-	    //
+	    // odotetaan kalibrointia, eikä oteta varaslähtöä.
 	    ;
 	while (!Button.ENTER.isPressed()) {
 	    if (estesensori.haeEtaisyys() < 30) {

@@ -7,7 +7,7 @@ import lejos.nxt.UltrasonicSensor;
  * Luokka esteiden etäisyyden mittaamiseen. Ultraäänisensori kiinnitettävä
  * porttiin 2.
  * 
- * @author Pauli
+ * @author Pauli Niva
  * @version 06012015
  */
 

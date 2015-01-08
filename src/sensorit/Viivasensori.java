@@ -51,6 +51,17 @@ public class Viivasensori {
 	return asetaSeurattavaArvo();
     }
 
+    /**
+     * Metodi jossa annetaan viivan ja taustan arvot kalibrointimetodille
+     * painamalla oranssia "Enter" napppia. Metodi piirtää lcd-näytölle
+     * viivasensorin lukemaa lukua käyttäjän tarkkailtavaksi.
+     * 
+     * @param kohde
+     *            saadaan kalibroi -metodilta, joka piirretään käyttäjän
+     *            opastukseksi lcd-näytölle.
+     * @return sensorinArvo palautetaan kalibroi -metodille, joka tallettaa sen
+     *         kohdetta vastaavaan muuttujaan.
+     */
     @SuppressWarnings("deprecation")
     public int kalibroiArvo(String kohde) {
 	int sensorinArvo = 0; // Arvon initialisointi
@@ -61,8 +72,8 @@ public class Viivasensori {
 	LCD.drawString("KALIBROIDAKSESI", 0, 1);
 	LCD.drawString(kohde, 0, 2);
 	while (!Button.ENTER.isPressed()) {
-	    sensorinArvo = lueArvo();
-	    LCD.drawInt(sensorinArvo, 4, 8, 2);
+	    sensorinArvo = lueArvo(); // luetaan mitattavan kohteen arvoa
+	    LCD.drawInt(sensorinArvo, 4, 8, 2); // ja piirretään se lcd-näytölle
 	    LCD.refresh();
 	}
 	return sensorinArvo;
