@@ -1,5 +1,7 @@
 package moottorit;
 
+import lejos.nxt.NXTRegulatedMotor;
+
 /**
  * Rajapinta moottoreille.
  * 
@@ -16,4 +18,6 @@ public interface Moottori {
     public void pysahdy();
 
     public void asetaTeho(int teho);
+
+    public NXTRegulatedMotor haeMoottori();
 }

@@ -2,6 +2,7 @@ package moottorit;
 
 import lejos.nxt.MotorPort;
 import lejos.nxt.NXTMotor;
+import lejos.nxt.NXTRegulatedMotor;
 
 /**
  * Luokka moottorin, johon kaikuluotain on kiinnitetty käyttämiseen. Moottori
@@ -20,18 +21,22 @@ public class Kaikuluotainmoottori implements Moottori {
 	moottori.stop();
     }
 
+    @Override
     public void eteenpain() {
 	moottori.forward();
     }
 
+    @Override
     public void taaksepain() {
 	moottori.backward();
     }
 
+    @Override
     public void pysahdy() {
 	moottori.stop();
     }
 
+    @Override
     public void asetaTeho(int teho) {
 	moottori.setPower(teho);
     }
@@ -68,5 +73,13 @@ public class Kaikuluotainmoottori implements Moottori {
 
     public int haeTakometriLuku() {
 	return moottori.getTachoCount();
+    }
+
+    /**
+     * Metodi ei käytössä.
+     */
+    @Override
+    public NXTRegulatedMotor haeMoottori() {
+	return null;
     }
 }

@@ -22,22 +22,27 @@ public class VasenMoottori implements Moottori {
 	moottoriC = Motor.C;
     }
 
+    @Override
     public void eteenpain() {
 	moottori.forward();
     }
 
+    @Override
     public void taaksepain() {
 	moottori.backward();
     }
 
+    @Override
     public void pysahdy() {
 	moottori.stop();
     }
 
+    @Override
     public void asetaTeho(int teho) {
 	moottori.setPower(teho);
     }
 
+    @Override
     public NXTRegulatedMotor haeMoottori() {
 	return moottoriC;
     }

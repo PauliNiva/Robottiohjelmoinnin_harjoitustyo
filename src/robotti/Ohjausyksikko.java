@@ -3,6 +3,7 @@ package robotti;
 import lejos.nxt.Motor;
 import lejos.robotics.navigation.DifferentialPilot;
 import moottorit.Kaikuluotainmoottori;
+import moottorit.Moottori;
 import moottorit.OikeaMoottori;
 import moottorit.VasenMoottori;
 import sensorit.Estesensori;
@@ -16,8 +17,8 @@ import sensorit.Viivasensori;
  */
 
 public class Ohjausyksikko {
-    private VasenMoottori vasenMoottori;
-    private OikeaMoottori oikeaMoottori;
+    private Moottori vasenMoottori;
+    private Moottori oikeaMoottori;
     private DifferentialPilot ohjaaja;
     private Kaikuluotainmoottori kaikuluotainmoottori;
     private Estesensori estesensori;
