@@ -88,22 +88,27 @@ public class Ohjausyksikko {
      *            suorituksen päättyessä.
      */
     public void kierraEste(int seurattavaArvo) {
-	Motor.A.resetTachoCount();
-	Motor.C.resetTachoCount();
-	ohjaaja.reset();
-	ohjaaja.rotate(-63);
+	resetoiMoottorit(); // poisteaan takometriluvut moottoreista.
+	ohjaaja.reset(); // poistetaan differentialpilotin omat laskut.
+	ohjaaja.rotate(-63); // käännytään oikealla. Asteet eivät mene yksi
+			     // yhteen välitysten takia.
 	kaikuluotainmoottori.kaannyVasen(90);
 	ajaOhi();
-	ohjaaja.rotate(55);
+	ohjaaja.rotate(57); // käännytään vasemmalle. Asteet eivät mene yksi
+			    // yhteen välitysten takia.
 	etsiKohde();
 	ajaOhi();
-	ohjaaja.rotate(55);
+	ohjaaja.travel(10); // otetaan turvaväli kääntymiseen.
+	ohjaaja.rotate(55); // käännytään oikealla. Asteet eivät mene yksi
+			    // yhteen välitysten takia.
 	etsiViiva(seurattavaArvo);
+	ohjaaja.travel(10); // mennään vähän viivan yli, jotta viivasensori on
+			    // käännöksen jälkeen viivan päällä.
 	kaikuluotainmoottori.kaannyOikea(90);
-	ohjaaja.rotate(-50);
-	Motor.A.suspendRegulation();
-	Motor.B.suspendRegulation();
-	Motor.C.suspendRegulation();
+	ohjaaja.rotate(-50); // käännytään oikealla. Asteet eivät mene yksi
+			     // yhteen välitysten takia.
+	vapautaMoottorit(); // vapautetaan moottori ohjaajalta, jotta viivan
+			    // seuraaminen onnistuu.
     }
 
     /**
@@ -124,7 +129,7 @@ public class Ohjausyksikko {
      * löytää sen, jonka jälkeen robotti pysähtyy.
      */
     public void etsiKohde() {
-	while (estesensori.haeEtaisyys() == 255) {
+	while (estesensori.haeEtaisyys() > 50) {
 	    ohjaaja.forward();
 	}
 	ohjaaja.stop();
@@ -143,5 +148,25 @@ public class Ohjausyksikko {
 	    ohjaaja.forward();
 	}
 	ohjaaja.stop();
+    }
+
+    /**
+     * Metodi moottorien vapauttamiseen ohjaajalta, jotta moottorit toimivat
+     * viivanseuraamistilassa, joka ei käytä differential pilot:ia.
+     */
+    public void vapautaMoottorit() {
+	Motor.A.suspendRegulation();
+	Motor.B.suspendRegulation();
+	Motor.C.suspendRegulation();
+    }
+
+    /**
+     * Metodi jolla poistetaan takometriluvut moottoreista, jotta vältytään
+     * kahden eri ohjaussysteemin ja kahden eri robotintilan aiheuttamilta
+     * mahdollisilta häiriötekijöiltä.
+     */
+    public void resetoiMoottorit() {
+	Motor.A.resetTachoCount();
+	Motor.C.resetTachoCount();
     }
 }

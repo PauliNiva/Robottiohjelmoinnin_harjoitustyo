@@ -20,10 +20,10 @@ public class PIDSaadin {
     private int viimeisinVirhe;
 
     public PIDSaadin() {
-	this.suhteellisenKorjauksenKulmakerroin = 275; // satakertainen arvo.
+	this.suhteellisenKorjauksenKulmakerroin = 175; // satakertainen arvo.
 	this.integraalinKulmakerroin = 7; // satakertainen arvo.
-	this.derivaatanKulmakerroin = 500; // satakertainen arvo.
-	this.tehoSuoraanKulkiessa = 65; // Teho jolla robotin olisi tarkoitus
+	this.derivaatanKulmakerroin = 450; // satakertainen arvo.
+	this.tehoSuoraanKulkiessa = 40; // Teho jolla robotin olisi tarkoitus
 					// kulkea, kun virhe on nolla.
 	this.integraali = 0;
 	this.derivaatta = 0;
