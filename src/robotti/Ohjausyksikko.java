@@ -98,12 +98,12 @@ public class Ohjausyksikko {
 			    // yhteen välitysten takia.
 	etsiKohde();
 	ajaOhi();
-	ohjaaja.travel(10); // otetaan turvaväli kääntymiseen.
+	ohjaaja.travel(12); // otetaan turvaväli kääntymiseen.
 	ohjaaja.rotate(55); // käännytään oikealla. Asteet eivät mene yksi
 			    // yhteen välitysten takia.
 	etsiViiva(seurattavaArvo);
-	ohjaaja.travel(10); // mennään vähän viivan yli, jotta viivasensori on
-			    // käännöksen jälkeen viivan päällä.
+	ohjaaja.travel(8); // mennään vähän viivan yli, jotta viivasensori on
+			   // käännöksen jälkeen viivan päällä.
 	kaikuluotainmoottori.kaannyOikea(90);
 	ohjaaja.rotate(-50); // käännytään oikealla. Asteet eivät mene yksi
 			     // yhteen välitysten takia.
