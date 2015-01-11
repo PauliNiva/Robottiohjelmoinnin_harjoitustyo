@@ -1,1 +1,9 @@
- 
+Aloitin viikon muuttamalla moottoreille annettavia käskyjä, siten että kumpaakin moottoria komennetaan nyt erikseen. Tämä toi heti huomattavaa parannusta robotin liikkumiseen ja kohtuu nopeasti sain laskettua pid-säätimelle tarpeeksi hyvät asetukset, jolloin robotti seurasi viiva kohtuu nätisti. Refaktoroin jo valmista koodia kohtuu rankasti ja lisäilin ominaisuuksia, kun niille ilmaantui robottia testatessa tarvetta.
+
+Kun olin alkuviikon jälkeen saanut robotin ohjelmoitua suurin piirtein haluaamaani kuntoon, niin aloin testaamaan. Käytin yhden päivän aamusta yömyöhään robotin testaamiseen ja sen käytöksen videointiin, siltä varalta, että robotti ei jostain syystä toimisikaan demossa. Lisäksi tein javadoc dokumentaatiota loppuviikosta, jossa kirjotin omille metodeilleni ja luokilleni kuvausta. Jos metodin toiminta oli täysin selvää metodin nimestä, niin jätin sellaiset kirjoittamatta. En ollut täysin varma, että mikä on hyvä käytäntö tämän asian suhteen.
+
+Perjantai meni demoillessa ja robottia kuvatessa. Viikonloppuna tein sitten tämän raportin, kuten myös loppuraportin ja rakennusohjeen. Sekä muokkasin vielä jotain viime silauksia koodiin, sekä muistin viimeinkin pushata kirjoittamani javadocit.
+
+Kaiken kaikkiaan mielestäni kurssi oli erittäin antoisa ja oli kiva ohjelmoida, kun näki ohjelmoimansa koodin "fyysisenä" robotin ja sen toiminnan muodossa. Mielestäni kurssi meni loppujen lopuksi hyvin, vaikka paniikki meinasi iskeä kun aikaa kului sairasteluun ja toimimattoman robotin ohjaustavan kanssa tappeluun. Kiitos IRC:issä saamastani neuvonnasta, jolla sain esimerkiksi tuon viivanseuraamiseen helpotuksen tuoneen "kumpaakin moottoria itsenäisesti" vinkin.
+
+Viikon ongelmana oli aika. Sai tehdä töitä yli 10 tuntisia päiviä tällä viikolla, että sain robotin valmiiksi demoon mennessä. Mutta onneksi sain kaiken valmiiksi mitä pitikin.
